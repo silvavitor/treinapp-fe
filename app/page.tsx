@@ -1,3 +1,4 @@
+import Athletes from "@/components/pages/athletes";
 import Exercises from "@/components/pages/exercises";
 import Trainings from "@/components/pages/trainings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -18,7 +19,9 @@ export default function Home() {
           <TabsContent value="exercises">
             <Exercises />
           </TabsContent>
-          <TabsContent value="athletes"></TabsContent>
+          <TabsContent value="athletes">
+            <Athletes />
+          </TabsContent>
         </Tabs>
       </header>
     </div>

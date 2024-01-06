@@ -1,8 +1,6 @@
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -14,11 +12,11 @@ type TrainingSummaryCardProps = {
 
 export default function TrainingSummaryCard({ title, exercises }: TrainingSummaryCardProps) {
     return (
-      <Card>
+      <Card className="mb-2">
         <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription>{exercises} exercicios</CardDescription>
         </CardHeader>
-    </Card>
+      </Card>
     )
 }

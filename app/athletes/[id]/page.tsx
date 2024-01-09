@@ -84,7 +84,7 @@ export default function Athlete({ params }: AthleteProps) {
   });
 
   return (
-    <>
+    <div className="mt-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -94,7 +94,7 @@ export default function Athlete({ params }: AthleteProps) {
               <FormItem>
                 <FormLabel>Nome</FormLabel>
                 <FormControl>
-                  <Input placeholder="nome" {...field} {...form.register('name')} />
+                  <Input placeholder="Nome" {...field} {...form.register('name')} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,6 +107,6 @@ export default function Athlete({ params }: AthleteProps) {
           </div>
         </form>
       </Form>
-    </>
+    </div>
   );
 }

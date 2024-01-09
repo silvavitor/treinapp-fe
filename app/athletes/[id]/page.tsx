@@ -66,13 +66,13 @@ export default function Athlete({ params }: AthleteProps) {
       method: "DELETE"
     });
 
-    router.push('/');
+    router.push('/athletes');
 
     toast.success('Atleta excluido com sucesso!');
   };
 
   function handleBack() {
-    router.push('/');
+    router.push('/athletes');
   }
 
   const form = useForm<z.infer<typeof formSchema>>({

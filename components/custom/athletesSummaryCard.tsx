@@ -3,17 +3,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import Link from "next/link";
 
 type AthletesSummaryCardProps = {
+  id: string;
   name: string;
 }
 
-export default function AthletesSummaryCard({ name }: AthletesSummaryCardProps) {
+export default function AthletesSummaryCard({ id, name }: AthletesSummaryCardProps) {
     return (
-      <Card className="mb-2">
-        <CardHeader>
-          <CardTitle>{name}</CardTitle>
-        </CardHeader>
-      </Card>
+      <Link href={`athletes/${id}`}>
+        <Card className="mb-2">
+          <CardHeader>
+            <CardTitle>{name}</CardTitle>
+          </CardHeader>
+        </Card>
+      </Link>
     )
 }

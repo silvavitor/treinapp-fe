@@ -26,7 +26,7 @@ export default function Athletes() {
         <Button>Adicionar</Button>
       </div>
       {athletes.map((athlete, i) => (
-        <AthletesSummaryCard key={i} name={athlete.name} />
+        <AthletesSummaryCard key={i} name={athlete.name} id={athlete.id} />
         ))}
     </>
   )

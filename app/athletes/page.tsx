@@ -4,6 +4,7 @@ import AthletesSummaryCard from "@/components/custom/athletesSummaryCard";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Athlete } from "@/types";
+import Link from "next/link";
 
 export default function Athletes() {
   const [athletes, setAthletes] = useState<Athlete[]>([]);
@@ -23,7 +24,9 @@ export default function Athletes() {
     <>
       <h1 className="font-bold text-3xl my-4 text-center">Atletas</h1>
       <div className="flex justify-end items-end mb-4">
-        <Button>Adicionar</Button>
+        <Link href="/athletes/new">
+          <Button>Adicionar</Button>
+        </Link>
       </div>
       {athletes.map((athlete, i) => (
         <AthletesSummaryCard key={i} name={athlete.name} id={athlete.id} />

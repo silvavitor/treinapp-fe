@@ -26,7 +26,7 @@ export default function Home() {
         <Button>Adicionar</Button>
       </div>
       {trainings.map((training, i) => (
-        <TrainingSummaryCard key={i} title={training.name} exercises={training._count.exercises}/>
+        <TrainingSummaryCard key={i} title={training.name} exercises={training._count.exercises} athletes={training._count.athletes} />
         ))}
     </div>
   );

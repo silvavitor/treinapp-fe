@@ -29,7 +29,7 @@ export default function Exercises() {
         </Link>
       </div>
       {exercises.map((exercise, i) => (
-        <ExercisesSummaryCard key={i} title={exercise.name} sets={exercise.sets_qtd} training={exercise.Training.name}/>
+        <ExercisesSummaryCard key={i} id={exercise.id} title={exercise.name} sets={exercise.sets_qtd} training={exercise.Training.name}/>
         ))}
     </>
   )

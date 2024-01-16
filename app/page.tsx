@@ -3,6 +3,7 @@
 import TrainingSummaryCard from "@/components/custom/trainingSummaryCard";
 import { Button } from "@/components/ui/button";
 import { Training } from "@/types";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
@@ -23,7 +24,9 @@ export default function Home() {
     <div>
       <h1 className="font-bold text-3xl my-4 text-center">Treinos</h1>
       <div className="flex justify-end items-end mb-4">
-        <Button>Adicionar</Button>
+        <Link href="/trainings/new">
+          <Button>Adicionar</Button>
+        </Link>
       </div>
       {trainings.map((training, i) => (
         <TrainingSummaryCard key={i} id={training.id} title={training.name} exercises={training._count.exercises} athletes={training._count.athletes} />

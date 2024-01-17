@@ -31,3 +31,29 @@ export type Training = {
         TrainingExecution: number
     }
 }
+
+export type ExerciseSets = {
+  id: string,
+  setNumber: number,
+  reps: number,
+  weight: number,
+  athletesId: string,
+  exercisesId: string,
+  trainingExecutionId: string,
+  createdAt: Date,
+  updatedAt: Date
+}
+
+export type TrainingExecution = {
+  id: string,
+  trainingId: string,
+  createdAt: Date,
+  updatedAt: Date,
+  training: {
+    name: string
+  },
+  exercises_sets: ExerciseSets[]
+  _count: {
+    exercises_sets: 4
+  }
+}

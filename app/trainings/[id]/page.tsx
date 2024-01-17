@@ -138,7 +138,6 @@ export default function TrainingEdit({ params }: TrainingEditParams) {
                       control={form.control}
                       name="athletes"
                       render={({ field }) => {
-                        console.log(field)
                         return (
                           <FormItem
                             key={athlete.id}

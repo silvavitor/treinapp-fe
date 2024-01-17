@@ -21,6 +21,9 @@ export default function Header() {
         <Link href="/athletes">
           <Button className="w-40 border border-stone-200" variant="secondary">Atletas</Button>
         </Link>
+        <Link href="/training-executions">
+          <Button className="w-40 border border-stone-200" variant="secondary">Execuções de treino</Button>
+        </Link>
       </div>
     </header>
   )

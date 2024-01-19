@@ -40,7 +40,7 @@ export default function ExerciseEdit({ params }: ExerciseEditParams) {
   const router = useRouter();
   const { id } = params;
 
-  const fetchTrainings = useCallback(async () => {
+  const fetchExercises = useCallback(async () => {
     const [responseTraining, responseExercise] = await Promise.all([
         fetch(`http://localhost:3000/trainings`),
         fetch(`http://localhost:3000/exercises/${id}`)
@@ -61,8 +61,8 @@ export default function ExerciseEdit({ params }: ExerciseEditParams) {
   }, [id]);
 
   useEffect(() => {
-    fetchTrainings();
-  }, [fetchTrainings]);
+    fetchExercises();
+  }, [fetchExercises]);
   
 
   async function onSubmit(values: z.infer<typeof formSchema>) {

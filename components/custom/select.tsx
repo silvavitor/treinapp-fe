@@ -1,7 +1,6 @@
 export type SelectOptions = {
   value: string,
   text: string,
-  selected?: boolean,
 }
 
 type SelectProps = {
@@ -18,8 +17,7 @@ export default function Select({ onChange, options }: SelectProps) {
       {options.map((option, i) => (
         <option 
           key={i} 
-          value={option.value} 
-          selected={option.selected}
+          value={option.value}
           className=""
         >{option.text}</option>
       ))}

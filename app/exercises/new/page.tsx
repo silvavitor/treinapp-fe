@@ -28,16 +28,19 @@ const formSchema = z.object({
 
 export default function Exercise() {
   const [options, setOptions] = useState<SelectOptions[]>([]);
+  const [defaultOption, setDefaultOption] = useState<Training>();
   const router = useRouter();
 
   const fetchTrainings = useCallback(async () => {
     const response = await fetch(`http://localhost:3000/trainings`);
     const responseJson: Training[] = await response.json();
     const options: SelectOptions[] = responseJson.map((training, i) => {
+      if (i === 0) {
+        setDefaultOption(training)
+      }
       return {
         value: training.id,
-        text: training.name,
-        selected: i === 0,
+        text: training.name
       }
     });
 
@@ -77,6 +80,11 @@ export default function Exercise() {
       sets_qtd: 0,
       trainingId: "",
     },
+    values: {
+      name: "",
+      sets_qtd: 0,
+      trainingId: defaultOption?.id,
+    }
   });
 
   return (

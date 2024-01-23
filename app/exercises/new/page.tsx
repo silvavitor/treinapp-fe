@@ -23,7 +23,7 @@ import { Training } from "@/types";
 const formSchema = z.object({
   name: z.string(),
   sets_qtd: z.coerce.number().min(1, {message: "deve ter no mínimo 1 série"}),
-  trainingId: z.string().uuid(),
+  trainingId: z.string().uuid().optional(),
 });
 
 export default function Exercise() {

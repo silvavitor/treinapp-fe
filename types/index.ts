@@ -35,11 +35,18 @@ export type Training = {
 export type ExerciseSets = {
   id: string,
   setNumber: number,
-  reps: number,
-  weight: number,
+  reps: string,
+  weight: string,
   athletesId: string,
   exercisesId: string,
   trainingExecutionId: string,
+  exercise?: {
+    id: string,
+    name: string,
+  }
+  athlete?: {
+    name: string,
+  };
   createdAt: Date,
   updatedAt: Date
 }

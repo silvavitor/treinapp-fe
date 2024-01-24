@@ -64,24 +64,6 @@ export default function TrainingExecutionsEdit({ params }: TrainingExecutionsEdi
     setTrainingExecution(trainingExecutionJson);
   }, [id]);
 
-  // {
-  //   "fc2fc71-9f28-4202-bbc8-a957bf0e07b6": {
-  //     name: "Supino"
-  //     athletesSets: {
-  //       "Rafa": [{
-  //         setNumber: 1,
-  //         reps: 0,
-  //         weight: 0,
-  //       },
-  //       {
-  //         setNumber: 2,
-  //         reps: 0,
-  //         weight: 0,
-  //       }]
-  //     }
-  //   }
-  // }
-
   const exerciseSets: ExerciseSetForm = useMemo<ExerciseSetForm>(() => {
     const exerciseSetForm: ExerciseSetForm = {};
     trainingExecution?.exercises_sets.forEach(exerciseSet => {

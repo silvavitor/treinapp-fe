@@ -6,24 +6,23 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 
 import * as z from "zod"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Select, { SelectOptions } from "@/components/custom/select";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Exercise, Training, TrainingExecution } from "@/types";
+import { TrainingExecution } from "@/types";
  
+
 const formSchema = z.object({
-  name: z.string(),
-  sets_qtd: z.coerce.number().min(1, {message: "deve ter no mínimo 1 série"}),
-  trainingId: z.string().uuid(),
+  execution: z.any(),
+  reps: z.array(z.string()),
+  weight: z.array(z.string()),
 });
 
 type ParamsType = {
@@ -99,8 +98,7 @@ export default function TrainingExecutionsEdit({ params }: TrainingExecutionsEdi
 
   useEffect(() => {
     fetchTrainingExecution();
-  }, [fetchTrainingExecution]);
-  
+  }, [fetchTrainingExecution]);  
   
   async function handleDelete() {
     await fetch(`http://localhost:3000/training-executions/${id}`, {
@@ -115,14 +113,45 @@ export default function TrainingExecutionsEdit({ params }: TrainingExecutionsEdi
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      sets_qtd: 0,
-      trainingId: "",
+      reps: [],
+      weight: [],
     },
   });
+  
+  async function handleRepsBlur (e: any) {
+    const id = e.target.attributes["data-id"].value;
+    await fetch(`http://localhost:3000/exercise-sets/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        reps: e.target.value
+      })
+    });
+
+    toast.success('Repetições foram salvas com sucesso!');
+  }
+
+  async function handleWeightBlur (e: any) {
+    console.log(e);
+    const id = e.target.attributes["data-id"].value;
+    console.log(id);
+    await fetch(`http://localhost:3000/exercise-sets/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        weight: Number(e.target.value)
+      })
+    });
+
+    toast.success('Peso salvo com sucesso!');
+  }
 
   return (
-    <div className="mt-8">
+    <div className="my-8">
       <Form {...form}>
         <form className="space-y-4">
           {
@@ -132,7 +161,7 @@ export default function TrainingExecutionsEdit({ params }: TrainingExecutionsEdi
               return <FormField
                 key={id}
                 control={form.control}
-                name="name"
+                name="execution"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-lg">{name}</FormLabel>
@@ -147,9 +176,23 @@ export default function TrainingExecutionsEdit({ params }: TrainingExecutionsEdi
                                 <span className="mr-2">{exerciseAthleteSet.setNumber} -</span>
                                 <div className="flex items-center">
                                   <span className="mr-2">Reps:</span>
-                                  <Input placeholder="Repetições" {...field} {...form.register('name')} />
+                                  <Controller
+                                    name={`reps[${exerciseAthleteSet.id}]`}
+                                    control={form.control}
+                                    defaultValue={exerciseAthleteSet.reps}
+                                    render={({ field }) => (
+                                      <Input placeholder="Repetições" {...field} onBlur={handleRepsBlur} data-id={exerciseAthleteSet.id} />
+                                    )}
+                                  />
                                   <span className="mx-2">Peso:</span>
-                                  <Input placeholder="Peso" {...field} {...form.register('name')} />
+                                  <Controller
+                                    name={`weight[${exerciseAthleteSet.id}]`}
+                                    control={form.control}
+                                    defaultValue={exerciseAthleteSet.reps}
+                                    render={({ field }) => (
+                                      <Input placeholder="Peso" {...field} onBlur={handleWeightBlur} data-id={exerciseAthleteSet.id} />
+                                    )}
+                                  />
                                 </div>
                               </div>
                             </FormControl>

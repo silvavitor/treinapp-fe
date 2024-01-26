@@ -21,8 +21,8 @@ import { TrainingExecution } from "@/types";
 
 const formSchema = z.object({
   execution: z.any(),
-  reps: z.array(z.string()),
-  weight: z.array(z.string()),
+  reps: z.any(),
+  weight: z.any(),
 });
 
 type ParamsType = {
@@ -177,7 +177,7 @@ export default function TrainingExecutionsEdit({ params }: TrainingExecutionsEdi
                                 <div className="flex items-center">
                                   <span className="mr-2">Reps:</span>
                                   <Controller
-                                    name={`reps[${exerciseAthleteSet.id}]`}
+                                    name={`reps.${exerciseAthleteSet.id}`}
                                     control={form.control}
                                     defaultValue={exerciseAthleteSet.reps}
                                     render={({ field }) => (
@@ -186,9 +186,9 @@ export default function TrainingExecutionsEdit({ params }: TrainingExecutionsEdi
                                   />
                                   <span className="mx-2">Peso:</span>
                                   <Controller
-                                    name={`weight[${exerciseAthleteSet.id}]`}
+                                    name={`weight.${exerciseAthleteSet.id}`}
                                     control={form.control}
-                                    defaultValue={exerciseAthleteSet.reps}
+                                    defaultValue={exerciseAthleteSet.weight}
                                     render={({ field }) => (
                                       <Input placeholder="Peso" {...field} onBlur={handleWeightBlur} data-id={exerciseAthleteSet.id} />
                                     )}
